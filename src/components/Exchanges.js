@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
   Card,
-  CardImg,
   CardText,
   CardBody,
-  CardLink,
   CardTitle,
-  CardSubtitle
+  CardSubtitle,
+  Button
 } from "reactstrap";
 
 import axios from "axios";
@@ -24,25 +23,67 @@ export default function Exchanges() {
 
   return (
     <>
-      {exchange.map(coin => (
-        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
-          <Card>
+      <h1
+        style={{
+          width: "100%",
+          textAlign: "center",
+          marginTop: "2%",
+          fontSize: "4rem"
+        }}>
+        Exchange Marketplace
+      </h1>
+      <p
+        style={{
+          textAlign: "center",
+          width: "70%",
+          fontSize: "2rem",
+          margin: "0 auto",
+          paddingTop: "1%"
+        }}>
+        What Is an Exchange? <br /> <br /> An exchange is a marketplace where
+        securities, commodities, derivatives and other financial instruments are
+        traded. The core function of an exchange is to ensure fair and orderly
+        trading and the efficient dissemination of price information for any
+        securities trading on that exchange. Exchanges give companies,
+        governments, and other groups a platform from which to sell securities
+        to the investing public.
+      </p>
+      <div
+        style={{
+          maxWidth: "1500px",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          color: "black"
+        }}>
+        {exchange.map(coin => (
+          <Card key={coin.id}>
             <CardBody>
-              <CardTitle>{coin.id}</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
+              <CardTitle>
+                <h2>{coin.name}</h2>
+              </CardTitle>
+              <CardSubtitle style={{ fontSize: "1rem" }}>
+                {coin.year_established}
+              </CardSubtitle>
             </CardBody>
-            <img width='100%' src='/assets/318x180.svg' alt='Logo' />
+            <img width='100%' src={coin.image} alt='Logo' />
             <CardBody>
-              <CardText>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </CardText>
-              <CardLink href='#'>Card Link</CardLink>
-              <CardLink href='#'>Another Link</CardLink>
+              <CardText> {coin.country}</CardText>
+              <CardText>Ranking: {coin.trust_score_rank} </CardText>
+              <CardText>Trust Score: {coin.trust_score}</CardText>
             </CardBody>
+            <Button
+              color='primary'
+              size='lg'
+              block
+              href={coin.url}
+              target='_blank'>
+              Shop Now
+            </Button>
           </Card>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 }

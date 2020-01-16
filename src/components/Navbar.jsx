@@ -10,7 +10,9 @@ const Navbar = () => {
       <Link to='/' style={{ textDecoration: "none" }}>
         <h1>Crypto Tracker</h1>
       </Link>
-      <Link to='/exchanges'> exchanges</Link>
+      <Link style={{ fontSize: "2.5rem", paddingRight: "7%" }} to='/exchanges'>
+        Exchanges
+      </Link>
       <div className='dark-mode__toggle'>
         <div
           onClick={toggleMode}
